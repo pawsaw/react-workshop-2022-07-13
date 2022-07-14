@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { noop } from '../../util/noop';
 
 export interface OnCounterValueChanged {

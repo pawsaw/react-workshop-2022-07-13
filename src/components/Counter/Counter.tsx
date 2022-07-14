@@ -1,24 +1,28 @@
 import { useState } from 'react';
+import { noop } from '../../util/noop';
 
-export const Counter: React.FC = () => {
-  const [count, setCount] = useState(0);
+export interface OnCounterValueChanged {
+  (value: number): void;
+}
 
+export interface CounterProps {
+  value?: number;
+  onValueChanged?: OnCounterValueChanged;
+}
+
+export const Counter: React.FC<CounterProps> = ({ value = 100, onValueChanged = noop }) => {
   const increment = () => {
-    setTimeout(() => {
-      setCount((oldCount) => oldCount + 1);
-    }, 2000);
-
-    console.log({ count });
+    onValueChanged(value + 1);
   };
 
   const decrement = () => {
-    setCount(count - 1);
+    onValueChanged(value - 1);
   };
 
   return (
     <>
       <button onClick={decrement}>-</button>
-      {count}
+      {value}
       <button onClick={increment}>+</button>
     </>
   );

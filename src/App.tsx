@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { Counter } from './components/Counter';
-
-
+import { Counter, OnCounterValueChanged } from './components/Counter';
 
 function App() {
+  const [counterValue, setCounterValue] = useState(300);
+  const onCounterValueChanged: OnCounterValueChanged = (value: number) => setCounterValue(value);
+
   return (
     <div className="App">
-      <Counter />
+      <Counter value={counterValue} onValueChanged={onCounterValueChanged} />
+      <p>Parent says: {counterValue}</p>
     </div>
   );
 }

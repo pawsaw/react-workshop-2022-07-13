@@ -1,13 +1,11 @@
+import { useState } from 'react';
 import './App.css';
 import { BookList } from './components/BookList';
-import { books } from './data/books';
+import { Book } from './domain/books';
 
 function App() {
-  return (
-    <div className="App">
-      <BookList books={books} />
-    </div>
-  );
+  const [books, setBooks] = useState<Book[] | null>(null);
+  return <div className="App">{books ? <BookList books={books} /> : <span>Loading...</span>}</div>;
 }
 
 export default App;

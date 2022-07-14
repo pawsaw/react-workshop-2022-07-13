@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeContextProvider } from './util/theme/ThemeContext';
+import { CounterProvider } from './util/counter';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ThemeContextProvider
+      theme={{
+        primaryColor: 'blue',
+      }}
+    >
+      <App />
+    </ThemeContextProvider>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

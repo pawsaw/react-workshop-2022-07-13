@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContextProvider } from './util/theme/ThemeContext';
-import { CounterProvider } from './util/counter';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -14,7 +14,9 @@ root.render(
         primaryColor: 'blue',
       }}
     >
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ThemeContextProvider>
   </React.StrictMode>,
 );

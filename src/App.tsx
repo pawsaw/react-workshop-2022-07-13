@@ -1,9 +1,16 @@
-import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
-import { BookScreen } from './screens/BookScreen';
+import { BookDetailsScreen } from './screens/BookDetailsScreen';
+import { BookScreen, OnBookSelected } from './screens/BookScreen';
 import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 function App() {
+  const history = useHistory();
+
+  const onBookSelected: OnBookSelected = (selectedBook) => {
+    history.push(`/books/${selectedBook.isbn}`);
+  };
+
   return (
     <>
       <ul>
@@ -17,7 +24,8 @@ function App() {
       <main>
         <Switch>
           <Route path="/playground" component={PlaygroundScreen} />
-          <Route path="/books" component={BookScreen} />
+          <Route path="/books/:isbn" component={BookDetailsScreen} />
+          <Route path="/books" render={() => <BookScreen onBookSelected={onBookSelected} />} />
           <Redirect to="/books" />
         </Switch>
       </main>
